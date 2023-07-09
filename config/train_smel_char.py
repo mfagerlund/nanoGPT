@@ -1,4 +1,5 @@
-# train a character-level smel model
+# train a miniature character-level shakespeare model
+# good for debugging and playing on macbooks and such
 
 out_dir = 'out-smel-char'
 eval_interval = 10000 # keep frequent because we'll overfit
@@ -9,18 +10,18 @@ log_interval = 20 # don't print too too often
 always_save_checkpoint = False
 
 wandb_log = False # override via command line if you like
-wandb_project = 'shakespeare-char'
-wandb_run_name = 'mini-gpt'
+wandb_project = 'smel-char'
+wandb_run_name = 'smel-gpt'
 
 dataset = 'smel_char'
 batch_size = 32
-block_size = 1024 # context of up to 256 previous characters
+block_size = 1024 # context of up to 1024 previous characters
 gradient_accumulation_steps = 1
 
 # https://huggingface.co/transformers/v2.2.0/pretrained_models.html
 
 # about 96k iterations per epoch
-print(f'iters per epoch={3151472418/32768:0.4f}')
+print(f'iters per epoch={516290294/32768:0.4f}')
 
 
 # baby GPT mode
