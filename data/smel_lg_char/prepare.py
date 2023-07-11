@@ -15,7 +15,7 @@ import glob
 #"train has 516,290,294 tokens
 #"val has 57,365,589 tokens
 
-directory = r'C:\dev\nanoGPT\data\smel_char'
+directory = r'C:\dev\nanoGPT\data\smel_lg_char'
 
 # Get a list of all the text files in the directory
 file_list = glob.glob(os.path.join(directory, '*.txt'))
@@ -48,8 +48,8 @@ def decode(l):
 
 # create the train and test splits
 n = len(data)
-train_data = data[:int(n*0.9)]
-val_data = data[int(n*0.9):]
+train_data = data[:int(n*0.975)]
+val_data = data[int(n*0.975):]
 
 # encode both to integers
 train_ids = encode(train_data)
@@ -69,7 +69,7 @@ meta = {
     'itos': itos,
     'stoi': stoi,
 }
-with open(os.path.join(os.path.dirname(__file__), 'meta.pkl'), 'wb') as f:
+with open(os.path.join(directory, 'meta.pkl'), 'wb') as f:
     pickle.dump(meta, f)
 
 # length of dataset in characters:  1115394

@@ -8,3 +8,4 @@ __pycache__/
 *.pt
 *.pyc
 input.txt
+/data/smel_lg_char/Smel*.txt
