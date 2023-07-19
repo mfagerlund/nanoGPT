@@ -62,9 +62,12 @@ if load_meta:
     print(f"Loading meta from {meta_path}...")
     with open(meta_path, 'rb') as f:
         meta = pickle.load(f)
+    
     # TODO want to make this more general to arbitrary encoder/decoder schemes
     stoi, itos = meta['stoi'], meta['itos']
     encode = lambda s: [stoi[c] for c in s]
+    
+    print("meta loaded")
     decode = lambda l: ''.join([itos[i] for i in l])
 else:
     # ok let's assume gpt-2 encodings by default
@@ -80,6 +83,7 @@ if start.startswith('FILE:'):
 start_ids = encode(start)
 x = (torch.tensor(start_ids, dtype=torch.long, device=device)[None, ...])
 
+print("generating")
 # run generation
 with torch.no_grad():
     with ctx:

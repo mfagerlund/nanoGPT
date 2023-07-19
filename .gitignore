@@ -9,3 +9,4 @@ __pycache__/
 *.pyc
 input.txt
 /data/smel_lg_char/Smel*.txt
+/out_smel_lg_char/*.mid

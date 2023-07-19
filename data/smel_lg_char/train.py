@@ -14,24 +14,29 @@ wandb_project = 'smel-lg-char'
 wandb_run_name = 'smel-lg-gpt'
 
 dataset = 'smel_lg_char'
-batch_size = 32
+batch_size = 8
 block_size = 1024 # context of up to 1024 previous characters
-gradient_accumulation_steps = 1
+gradient_accumulation_steps = 4
+
+#init_from='resume'
 
 # https://huggingface.co/transformers/v2.2.0/pretrained_models.html
 
-# about 34533 iterations per epoch
-print(f'iters per epoch={1131585634/32768:0.4f}')
+# about 80128 iterations per epoch
+#train has 2,625,653,877 tokens
+#val has 138,192,310 tokens
+iterations_per_epoch=round(2625653877/32768)
+print(f'iters per epoch={iterations_per_epoch}')
 
 
-n_layer = 12#24
-n_embd = 768#1024
-n_head = 12#16
+n_layer = 24#12#24
+n_embd = 1024#768#1024
+n_head = 16#12#16
 dropout = 0.2
 
 learning_rate = 1e-3
-max_iters = 34533*4
-lr_decay_iters = 34533 # make equal to max_iters usually
+max_iters = iterations_per_epoch*5
+lr_decay_iters = iterations_per_epoch # make equal to max_iters usually
 min_lr = 1e-4 # learning_rate / 10 usually
 
 warmup_iters = 100 # not super necessary potentially
